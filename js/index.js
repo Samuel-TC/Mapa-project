@@ -1,4 +1,5 @@
 // Initialize and add the map
+
 const pais = 'Costa Rica';
 var provincia = '';
 var canton = '';
@@ -12,16 +13,16 @@ var latitud;
 var longitud
 
 function initMap() {
-    let zoom =7;
-    if(provincia != ''){
-        zoom=10;
+    let zoom = 7;
+    if (provincia != '') {
+        zoom = 10;
     }
-    if(canton != ''){
-        zoom=15;
+    if (canton != '') {
+        zoom = 15;
     }
 
-    if(distrito != ''){
-        zoom=22;
+    if (distrito != '') {
+        zoom = 22;
     }
 
     const geocoder = new google.maps.Geocoder();
@@ -30,7 +31,7 @@ function initMap() {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
 
-            latitud  = lat;
+            latitud = lat;
             longitud = lng;
             // utilizar las coordenadas geográficas para definir la ubicación del mapa y del marcador
             // The location of Uluru
@@ -47,7 +48,7 @@ function initMap() {
                 position: uluru,
                 map: map,
             });
-        } 
+        }
     });
 
 }
@@ -66,6 +67,20 @@ $.ajax({
 
 $(document).ready(function () {
 
+    const containerwater = document.querySelector('.container-water');
+    const search = document.querySelector('.search-box button');
+    const weatherBox = document.querySelector('.weather-box');
+    const weatherDetails = document.querySelector('.weather-details');
+    const error404 = document.querySelector('.not-found');
+
+    const provinciaCartago = document.getElementById("cartago");
+    const provinciaHeredia = document.getElementById("heredia");
+    const provinciaLimon = document.getElementById("limon");
+    const provinciaSanJose = document.getElementById("san-jose");
+    const provinciaAlajuela = document.getElementById("alajuela");
+    const provinciaPuntarena = document.getElementById("puntarenas");
+    const provinciaGuanacaste = document.getElementById("guanacaste");
+
     const selectProvincias = document.getElementById("provincias");
     const selectCantones = document.getElementById("cantones");
     const selectDristritos = document.getElementById("distrito");
@@ -76,7 +91,7 @@ $(document).ready(function () {
     $('#provincias').change(function () {
         provincia = $(this).val();
         $.ajax({
-            url: 'https://ubicaciones.paginasweb.cr/provincia/'+provincia+'/cantones.json', // URL del API
+            url: 'https://ubicaciones.paginasweb.cr/provincia/' + provincia + '/cantones.json', // URL del API
             type: 'GET', // Método HTTP a utilizar (en este caso, GET)
             dataType: 'json', // Tipo de datos esperados en la respuesta (en este caso, JSON)
             success: function (data) {
@@ -104,7 +119,7 @@ $(document).ready(function () {
         });
     });
 
-   
+
     selectProvincias.addEventListener("change", function () {
         provinciaName = this.options[this.selectedIndex].text;
         while (selectCantones.options.length > 1) {
@@ -113,11 +128,11 @@ $(document).ready(function () {
         while (selectDristritos.options.length > 1) {
             selectDristritos.remove(selectDristritos.options.length - 1);
         }
-        if(provinciaName== 'Selecione una opcion'){
-            provincia='';
+        if (provinciaName == 'Selecione una opcion') {
+            provincia = '';
         }
-        canton='';
-        distrito='';
+        canton = '';
+        distrito = '';
         initMap();
         inpLatitud.value = latitud;
         inpLongitud.value = longitud;
@@ -128,7 +143,7 @@ $(document).ready(function () {
         while (selectDristritos.options.length > 1) {
             selectDristritos.remove(selectDristritos.options.length - 1);
         }
-        distrito=''
+        distrito = ''
         initMap();
         inpLatitud.value = latitud;
         inpLongitud.value = longitud;
@@ -140,6 +155,119 @@ $(document).ready(function () {
         inpLatitud.value = latitud;
         inpLongitud.value = longitud;
     });
+
+    search.addEventListener('click', () => {
+        climaProvincia('');
+    });
+
+    provinciaCartago.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('Cartago, CR')
+    });
+
+    provinciaHeredia.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('Heredia, CR')
+    });
+
+    provinciaLimon.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('Limón, CR')
+    });
+
+    provinciaAlajuela.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('Alajuela, CR')
+    });
+
+    provinciaSanJose.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('san Jose, CR')
+    });
+
+    provinciaPuntarena.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('Puntarenas, CR')
+    });
+
+    provinciaGuanacaste.addEventListener('click', () => {
+        document.querySelector('.search-box input').value = '';
+        climaProvincia('Guanacaste, CR')
+    });
+
+    async function climaProvincia(provinciaP) {
+
+        const APIKey = '4b934c7a18843743669428d794efc4f9';
+        let city = document.querySelector('.search-box input').value;
+
+        if (city === '') {
+            city = provinciaP;
+            document.querySelector('.search-box input').value = provinciaP
+        } else {
+            provinciaP = city
+        }
+
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + provinciaP + '&units=metric&appid=' + '4b934c7a18843743669428d794efc4f9')
+            .then(response => response.json())
+            .then(json => {
+
+                if (json.cod === '404') {
+                    containerwater.style.height = '400px';
+                    weatherBox.style.display = 'none';
+                    weatherDetails.style.display = 'none';
+                    error404.style.display = 'block';
+                    error404.classList.add('fadeIn');
+                    return;
+                }
+
+                error404.style.display = 'none';
+                error404.classList.remove('fadeIn');
+
+                const image = document.querySelector('.weather-box img');
+                const temperature = document.querySelector('.weather-box .temperature');
+                const description = document.querySelector('.weather-box .description');
+                const humidity = document.querySelector('.weather-details .humidity span');
+                const wind = document.querySelector('.weather-details .wind span');
+
+                switch (json.weather[0].main) {
+                    case 'Clear':
+                        image.src = 'images/clear.png';
+                        break;
+
+                    case 'Rain':
+                        image.src = 'images/rain.png';
+                        break;
+
+                    case 'Snow':
+                        image.src = 'images/snow.png';
+                        break;
+
+                    case 'Clouds':
+                        image.src = 'images/cloud.png';
+                        break;
+
+                    case 'Haze':
+                        image.src = 'images/mist.png';
+                        break;
+
+                    default:
+                        image.src = '';
+                }
+
+                temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+                description.innerHTML = `${json.weather[0].description}`;
+                humidity.innerHTML = `${json.main.humidity}%`;
+                wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+
+                weatherBox.style.display = '';
+                weatherDetails.style.display = '';
+                weatherBox.classList.add('fadeIn');
+                weatherDetails.classList.add('fadeIn');
+                containerwater.style.height = '590px';
+
+            });
+    }
+
 });
 
 window.initMap = initMap;
