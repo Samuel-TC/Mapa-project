@@ -1,0 +1,370 @@
+.article {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(249, 249, 249, 0.501);
+}
+
+.map-bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding-top: 22vh;
+}
+
+.map-bg:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(10px);
+    /* ajustar el valor según se desee */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.019) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.013) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    background: url('/images/map.jpg');
+    z-index: -1;
+}
+
+.row {
+    padding-top: 8vh;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #fff;
+    padding: 0.8rem;
+    box-sizing: border-box;
+    z-index: 9999;
+    /* para asegurarse de que la barra de navegación esté en la parte superior de otros elementos */
+}
+
+.nav-link {
+    color: #33242b;
+}
+
+.text-orange {
+    color: #fc4630;
+}
+
+.text-form {
+    color: #e30842;
+    font-weight: 700;
+}
+
+.progress-bar {
+    background-color: #e30842;
+}
+
+.text-light {
+    background-color: #e30842;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}
+
+.btn {
+    background-color: #e84624;
+    border-color: #e84624;
+    box-shadow: rgba(255, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 30px 30px;
+}
+
+.btn:hover {
+    background-color: #33242b;
+}
+
+.informacion {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/images/cr.jpg');
+    height: 40vh;
+    background-color: #ffffff00;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.text-light {
+    bottom: 0;
+}
+
+.animate-map {
+    animation-name: ubication;
+    position: relative;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.margin {
+    padding-top: 23vh;
+    padding-bottom: 20vh;
+
+}
+
+.title {
+    background-color: blur(5px);
+}
+
+@keyframes ubication {
+    0% {
+        bottom: 0rem;
+        top: 0rem;
+    }
+
+    50% {
+        bottom: 0rem;
+        top: -0.8rem;
+    }
+
+    100% {
+        bottom: 0rem;
+        top: 0rem;
+    }
+}
+
+.image-svg {
+    width: 100%;
+    stroke: rgba(249, 249, 249, 0.501);
+    stroke-width: 3;
+}
+
+.image-svg .cartago {
+    fill: #ba0205;
+}
+
+.image-svg .heredia {
+    fill: #e94b2c;
+}
+
+.image-svg .limon {
+    fill: #e87624;
+}
+
+.image-svg .alajuela {
+    fill: #e8a726;
+}
+
+.image-svg .puntarenas {
+    fill: #d5ce87;
+}
+
+.image-svg .san-jose {
+    fill: #d2c101;
+}
+
+.image-svg .guanacaste {
+    fill: #ff0004;
+}
+
+.image-svg path:hover {
+    fill: #33242b;
+    transition: 0.5s;
+}
+
+.map {
+    height: 50vh;
+    width: 100%;
+}
+
+.form-control {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 1rem;
+    padding: 0.8;
+    max-width: 20rem;
+    width: 100%;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #33242b !important;
+    box-shadow: 0 0 2px #33242b !important;
+}
+
+/* Personalizar las flechas del select */
+.form-control .form-control-option {
+    background-color: #fff;
+    color: #333;
+}
+
+.form-control::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+}
+
+.text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #33242b;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-link {
+    color: #33242b;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-link:hover:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    color: #e94b2c !important;
+    background-color: #e94b2c;
+    visibility: visible;
+    transform: scaleX(1);
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.nav-link:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #e94b2c;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.nav-link:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #e94b2c;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.nav-link:hover:after {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.col-md-4 {
+    margin-bottom: 2rem;
+}
+
+.col-md-4 .paragraph {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.col-md-4 .list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.col-md-4 .list .list-item {
+    margin-bottom: 0.8rem
+}
+
+.col-md-4 .list .list-item .paragraph {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.col-md-4 .text,
+.col-md .text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #33242b;
+    margin-bottom: 20px;
+}
+
+.col-md-4 .text,
+.col-md .text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #33242b;
+    margin-bottom: 1.2rem;
+}
+
+.col-md-4 .text,
+.col-md .text {
+    color: #33242b;
+    margin-bottom: 10px;
+}
+
+.text-orange {
+    color: #e84624;
+}
+
+.progress {
+    height: 1.2;
+    border-radius: 0.8rem;
+    background-color: #eee;
+}
+
+.progress-bar {
+    height: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 0.8rem;
+    background-color: #e84624;
+}
+
+.informacion .text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+
+.footer-container {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-container section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 1.2rem;
+  }
+  
+  .footer-container section a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .footer-end {
+    background-color: #939393bd;
+    font-size: 1rem;
+    color: #fff;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+  

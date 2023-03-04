@@ -1,5 +1,5 @@
 // Initialize and add the map
-var pais = 'Costa Rica';
+const pais = 'Costa Rica';
 var provincia = '';
 var canton = '';
 var distrito = '';
@@ -14,10 +14,14 @@ var longitud
 function initMap() {
     let zoom =7;
     if(provincia != ''){
-        zoom=8;
+        zoom=10;
     }
     if(canton != ''){
-        zoom=10;
+        zoom=15;
+    }
+
+    if(distrito != ''){
+        zoom=22;
     }
 
     const geocoder = new google.maps.Geocoder();
@@ -109,6 +113,11 @@ $(document).ready(function () {
         while (selectDristritos.options.length > 1) {
             selectDristritos.remove(selectDristritos.options.length - 1);
         }
+        if(provinciaName== 'Selecione una opcion'){
+            provincia='';
+        }
+        canton='';
+        distrito='';
         initMap();
         inpLatitud.value = latitud;
         inpLongitud.value = longitud;
@@ -119,6 +128,7 @@ $(document).ready(function () {
         while (selectDristritos.options.length > 1) {
             selectDristritos.remove(selectDristritos.options.length - 1);
         }
+        distrito=''
         initMap();
         inpLatitud.value = latitud;
         inpLongitud.value = longitud;
@@ -131,4 +141,5 @@ $(document).ready(function () {
         inpLongitud.value = longitud;
     });
 });
+
 window.initMap = initMap;
