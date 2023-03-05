@@ -25,6 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    margin: auto;
     filter: blur(15px);
     /* ajustar el valor según se desee */
     background-image: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.019) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.013) 1px, transparent 1px);
@@ -82,17 +83,44 @@
 
 .btn:hover {
     background-color: #33242b;
+    border-color: #ba0205;
+    transition: 1s;
 }
 
 .informacion {
+    position: relative; 
     text-align: center;
-    display: flex;
     justify-content: center;
     align-items: center;
-    background: url('/images/cr.jpg');
-    height: 40vh;
-    background-color: #ffffff00;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    height: 23vh;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .informacion::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/images/map.jpg') no-repeat center center / cover;
+      filter: blur(5px); /* agregar el efecto blur al pseudo-elemento */
+      z-index: -1;
+  }
+
+  @media (max-width: 768px) {
+    .informacion{
+        flex-direction: column;
+        height: 35vh;
+    }
+    
+  }  
+
+.text-light {
+    position: relative; /* agregar para que el z-index tenga efecto */
+    z-index: 2; /* agregar un z-index más alto para el contenido */
 }
 
 .text-light {
@@ -103,6 +131,8 @@
     animation-name: ubication;
     position: relative;
     animation-duration: 2s;
+    width: 25%;
+    max-width: 4rem;;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
@@ -112,6 +142,18 @@
     padding-bottom: 20vh;
 
 }
+
+.container-title{
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .container-title{
+        position: relative;
+        margin-left: 2.5rem;
+    }
+    
+  }
 
 .title {
     background-color: blur(5px);
@@ -200,8 +242,8 @@
 
 .form-control:focus {
     outline: none;
-    border-color: #33242b !important;
-    box-shadow: 0 0 2px #33242b !important;
+    border-color: #33242b ;
+    box-shadow: 0 0 2px #33242b ;
 }
 
 /* Personalizar las flechas del select */
@@ -243,7 +285,7 @@
     height: 2px;
     bottom: -2px;
     left: 0;
-    color: #e94b2c !important;
+    color: #e94b2c ;
     background-color: #e94b2c;
     visibility: visible;
     transform: scaleX(1);
@@ -382,13 +424,40 @@
     text-align: center;
   }
   
+.container-ubication{
+    position: relative;
+    width: 22rem;
+    height: 100%;
+    background: #fff;
+    padding: 28px 32px;
+    overflow: hidden;
+    border-radius: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 0.6s ease-out;
+    zoom: 100%;
+    margin-top: 3rem;
+    margin-bottom: 5rem; 
+}
+
+.container-cr{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 28px 32px;
+    overflow: hidden;
+    border-radius: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 0.6s ease-out;
+    zoom: 100%;
+    margin-top: 3rem;
+    margin-bottom: 3rem; 
+}
   
 .container-water{
     position: relative;
     width: 400px;
     height: 100px;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
     background: #fff;
     padding: 28px 32px;
     overflow: hidden;
@@ -396,7 +465,18 @@
     font-family: 'Roboto', sans-serif;
     transition: 0.6s ease-out;
     zoom: 70%;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
 }
+
+@media (max-width: 768px) {
+    .container-water{
+        margin: auto;
+        margin-top: 3rem;
+        margin-bottom: 5rem;
+    }
+    
+  }
 
 .search-box{
     width: 100%;
@@ -555,3 +635,4 @@
         opacity: 1;
     }
 }
+
