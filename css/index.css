@@ -31,7 +31,7 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, 0.019) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.013) 1px, transparent 1px);
     background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-    background: url('/images/map.jpg');
+    background: url('images/map.jpg');
     z-index: -1;
 }
 
@@ -105,7 +105,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('/images/map.jpg') no-repeat center center / cover;
+      background: url('images/map.jpg') no-repeat center center / cover;
       filter: blur(5px); /* agregar el efecto blur al pseudo-elemento */
       z-index: -1;
   }
