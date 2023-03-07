@@ -1,6 +1,5 @@
 // Initialize and add the map
 
-const pais = 'Costa Rica';
 var provincia = '';
 var canton = '';
 var distrito = '';
@@ -26,7 +25,7 @@ function initMap() {
     }
 
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: pais + ' ' + provinciaName + ' ' + cantonName + ' ' + distritoName }, function (results, status) {
+    geocoder.geocode({ address:'Costa Rica ' + provinciaName + ' ' + cantonName + ' ' + distritoName }, function (results, status) {
         if (status === "OK") {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
