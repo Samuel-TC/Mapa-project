@@ -104,7 +104,7 @@ $(document).ready(function () {
 
     $('#cantones').change(function () {
         canton = $(this).val();
-        console.log(canton)
+        
         $.ajax({
             url: 'https://ubicaciones.paginasweb.cr/provincia/' + provincia + '/canton/' + canton + '/distritos.json', // URL del API
             type: 'GET', // Método HTTP a utilizar (en este caso, GET)
@@ -227,7 +227,7 @@ $(document).ready(function () {
                 const description = document.querySelector('.weather-box .description');
                 const humidity = document.querySelector('.weather-details .humidity span');
                 const wind = document.querySelector('.weather-details .wind span');
-                console.log(json.weather[0].main)
+
                 switch (json.weather[0].main) {
                     case 'Clear':
                         image.src = 'images/clear.png';
