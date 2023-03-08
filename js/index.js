@@ -227,7 +227,7 @@ $(document).ready(function () {
                 const description = document.querySelector('.weather-box .description');
                 const humidity = document.querySelector('.weather-details .humidity span');
                 const wind = document.querySelector('.weather-details .wind span');
-
+                console.log(json.weather[0].main)
                 switch (json.weather[0].main) {
                     case 'Clear':
                         image.src = 'images/clear.png';
@@ -247,6 +247,10 @@ $(document).ready(function () {
 
                     case 'Haze':
                         image.src = 'images/mist.png';
+                        break;
+
+                    case 'Drizzle':
+                        image.src = 'images/lluvia.png';
                         break;
 
                     default:
